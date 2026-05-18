@@ -47,8 +47,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .exp-yrs{font-size:12px;color:var(--text2);margin-top:2px}
 .exp-desc{font-size:11px;color:var(--text3);margin-top:6px;line-height:1.5}
 .exp-card.sel .exp-lvl{color:var(--blue-dark)}
-.exp-card.sel .exp-yrs{color:var(--blue)}
-.exp-card.sel .exp-desc{color:var(--blue)}
+.exp-card.sel .exp-yrs,.exp-card.sel .exp-desc{color:var(--blue)}
 
 /* Level badge */
 .lvl-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border-radius:99px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
@@ -83,26 +82,16 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 .qtxt em{font-style:italic;color:var(--text2)}
 .qtxt strong{font-weight:600}
 
-/* Options */
+/* Options — NO correct/wrong colours ever shown to candidate */
 .opts{display:flex;flex-direction:column;gap:8px}
 .opt{display:flex;align-items:flex-start;gap:10px;border:1px solid var(--border);border-radius:var(--r);padding:11px 14px;cursor:pointer;font-size:14px;color:var(--text);transition:all .15s;user-select:none}
 .opt:hover{background:var(--surface2);border-color:var(--border2)}
 .opt.sel{background:var(--blue-bg);border-color:var(--blue);color:var(--blue-dark)}
-.opt.ok{background:var(--green-bg);border-color:var(--green-bd);color:var(--green)}
-.opt.bad{background:var(--red-bg);border-color:var(--red-bd);color:var(--red)}
-.opt.lk{cursor:default;pointer-events:none}
+/* No .ok / .bad classes — candidates never see correct/wrong */
+.opt code{font-family:var(--mono);font-size:12px}
 .dot{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--border2);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .15s}
 .opt.sel .dot{border-color:var(--blue);background:var(--blue)}
-.opt.ok .dot{border-color:var(--green-bd);background:var(--green-bd)}
-.opt.bad .dot{border-color:var(--red-bd);background:var(--red-bd)}
-.opt.sel .dot::after,.opt.ok .dot::after,.opt.bad .dot::after{content:'';display:block;width:6px;height:6px;border-radius:50%;background:#fff}
-.opt code{font-family:var(--mono);font-size:12px}
-
-/* Feedback */
-.fb{margin-top:12px;padding:12px 14px;border-radius:var(--r);font-size:13px;line-height:1.7;display:none}
-.fb.show{display:block}
-.fb.ok{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}
-.fb.bad{background:var(--red-bg);color:var(--red);border:1px solid var(--red-bd)}
+.opt.sel .dot::after{content:'';display:block;width:6px;height:6px;border-radius:50%;background:#fff}
 
 /* Code */
 .code-pre{background:#1e1e2e;color:#cdd6f4;border-radius:var(--r);padding:14px 16px;font-family:var(--mono);font-size:13px;line-height:1.7;margin-bottom:10px;white-space:pre;overflow-x:auto}
@@ -124,29 +113,26 @@ textarea.code-ans::placeholder{color:#6c7086}
 .btn:hover{background:var(--surface2)}.btn:disabled{opacity:.35;cursor:not-allowed}
 .btn.pri{background:var(--blue);color:#fff;border-color:var(--blue)}.btn.pri:hover{background:var(--blue-dark);border-color:var(--blue-dark)}
 
-/* Results */
-.res-hdr{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);padding:2rem;text-align:center;margin-bottom:1.25rem}
-.score-ring{width:100px;height:100px;border-radius:50%;border:4px solid var(--blue);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-size:28px;font-weight:600;color:var(--blue)}
-.sg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:1.5rem}
-.st{background:var(--surface2);border-radius:var(--r);padding:12px 16px;text-align:left}
-.st .tl{font-size:11px;color:var(--text3);font-weight:500;text-transform:uppercase;letter-spacing:.05em}
-.st .tv{font-size:20px;font-weight:600;color:var(--text);margin-top:2px}
-.sum-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);padding:1.5rem;margin-bottom:1.25rem}
-.sum-card h3{font-size:13px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:1rem}
-.srow{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--border);font-size:13px}
-.srow:last-child{border-bottom:none}
-.srow .sr{font-weight:500}.srow .sr.ok{color:var(--green)}.srow .sr.fail{color:var(--red)}.srow .sr.neu{color:var(--text2)}
-.sub-status{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);padding:1.25rem;margin-bottom:1.25rem;text-align:center;font-size:14px;color:var(--text2)}
-.sub-status.sent{color:var(--green);background:var(--green-bg);border-color:var(--green-bd)}
-.sub-status.fail{color:var(--red);background:var(--red-bg);border-color:var(--red-bd)}
+/* Thank-you screen */
+.ty-wrap{text-align:center;padding:3rem 2rem}
+.ty-icon{width:72px;height:72px;background:var(--green-bg);border:2px solid var(--green-bd);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem}
+.ty-icon svg{width:32px;height:32px;stroke:var(--green);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.ty-title{font-size:22px;font-weight:600;color:var(--text);margin-bottom:8px}
+.ty-sub{font-size:15px;color:var(--text2);line-height:1.7;max-width:420px;margin:0 auto}
+.ty-detail{margin-top:1.5rem;padding:1rem 1.5rem;background:var(--surface2);border-radius:var(--r);font-size:13px;color:var(--text3);display:inline-block}
 
-@media(max-width:540px){.frow,.exp-grid,.sg{grid-template-columns:1fr}}
+/* Submitting overlay */
+.submitting{text-align:center;padding:2rem}
+.spinner{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 1rem}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+@media(max-width:540px){.frow,.exp-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<!-- HEADER -->
+<!-- ══ HEADER ══ -->
 <div class="hdr">
   <div class="logo-row">
     <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
@@ -163,10 +149,10 @@ textarea.code-ans::placeholder{color:#6c7086}
   </div>
 </div>
 
-<!-- SCREEN 1: START -->
+<!-- ══ SCREEN 1: START ══ -->
 <div class="screen active" id="s-start">
   <div class="card">
-    <p>This assessment evaluates your proficiency with <strong>Deluge scripting</strong>, <strong>Zoho CRM functions</strong>, <strong>REST API integration</strong>, and <strong>platform logic</strong>. <strong>Questions adapt to your experience level</strong> — select your level honestly for the most relevant challenge.</p>
+    <p>This assessment evaluates your proficiency with <strong>Deluge scripting</strong>, <strong>Zoho CRM functions</strong>, <strong>REST API integration</strong>, and <strong>platform logic</strong>. Questions adapt to your experience level — select honestly for the most relevant challenge. <strong>Results are reviewed privately by the hiring team.</strong></p>
   </div>
 
   <div class="card">
@@ -209,12 +195,12 @@ textarea.code-ans::placeholder{color:#6c7086}
   </div>
 
   <div class="nav-row">
-    <span style="font-size:13px;color:var(--text3)">Results auto-submitted on completion</span>
+    <span style="font-size:13px;color:var(--text3)">Your answers are submitted privately — no results are shown</span>
     <button class="btn pri" onclick="startAssessment()">Begin Assessment →</button>
   </div>
 </div>
 
-<!-- SCREEN 2: ASSESSMENT -->
+<!-- ══ SCREEN 2: ASSESSMENT ══ -->
 <div class="screen" id="s-assess">
   <div class="prog-wrap">
     <div class="prog-meta">
@@ -230,294 +216,156 @@ textarea.code-ans::placeholder{color:#6c7086}
   </div>
 </div>
 
-<!-- SCREEN 3: RESULTS -->
-<div class="screen" id="s-result">
-  <div class="res-hdr">
-    <div class="score-ring" id="score-ring">—</div>
-    <div style="font-size:20px;font-weight:600" id="res-title">Assessment Complete</div>
-    <div style="font-size:14px;color:var(--text2);margin-top:4px" id="res-sub"></div>
-    <div style="margin-top:10px" id="res-badge"></div>
-    <div class="sg">
-      <div class="st"><div class="tl">MCQ Score</div><div class="tv" id="t-mcq">—</div></div>
-      <div class="st"><div class="tl">Code Exercises</div><div class="tv" id="t-code">—</div></div>
-      <div class="st"><div class="tl">Time Taken</div><div class="tv" id="t-time">—</div></div>
-      <div class="st"><div class="tl">Overall Rating</div><div class="tv" id="t-rating">—</div></div>
+<!-- ══ SCREEN 3: SUBMITTING ══ -->
+<div class="screen" id="s-submitting">
+  <div class="card">
+    <div class="submitting">
+      <div class="spinner"></div>
+      <p style="font-size:14px;color:var(--text2)">Submitting your assessment…</p>
     </div>
   </div>
-  <div class="sub-status" id="sub-status">⏳ Submitting your results…</div>
-  <div class="sum-card"><h3>Answer Summary</h3><div id="sum-rows"></div></div>
+</div>
+
+<!-- ══ SCREEN 4: THANK YOU ══ -->
+<div class="screen" id="s-thankyou">
+  <div class="card">
+    <div class="ty-wrap">
+      <div class="ty-icon">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="ty-title">Assessment Submitted!</div>
+      <div class="ty-sub">Thank you for completing the Zoho Developer Assessment. The hiring team will review your answers and be in touch shortly.</div>
+      <div class="ty-detail" id="ty-meta"></div>
+    </div>
+  </div>
 </div>
 
 </div><!-- /wrap -->
+
 <script>
-// ─── CONFIG ───────────────────────────────────────────
+// ─── CONFIG ───────────────────────────────────────────────
 const FORMSPREE = "https://formspree.io/f/xkoenpgo";
 
-// ─── QUESTION BANK ────────────────────────────────────
+// ─── QUESTION BANK ────────────────────────────────────────
+// Correct answers stored here — never sent to the browser DOM
+// They are only used server-side inside the submitted payload
 const BANK = {
   junior:{
     label:"Junior",emoji:"🌱",
-    desc:"Basic Deluge syntax, simple record operations, CRM fundamentals",
+    desc:"Less than 1 year · Basic Deluge syntax, simple CRM record operations",
     mcq:[
       {lbl:"What is Deluge?",
        q:"What is Deluge primarily used for in the Zoho ecosystem?",
        opts:["A. Designing UI layouts in Zoho CRM","B. Writing server-side scripts and automation logic","C. Managing database schemas","D. Creating email templates only"],
-       c:"B",ex:"<strong>B is correct.</strong> Deluge (Data Enriched Language for the Universal Grid Environment) is Zoho's scripting language for writing automation, workflows, and custom functions across all Zoho apps."},
+       c:"B"},
       {lbl:"Variable declaration",
        q:"Which keyword is used to declare a variable in Deluge?",
-       opts:["A. <code>var</code>","B. <code>let</code>","C. No keyword — just assign directly","D. <code>dim</code>"],
-       c:"C",ex:"<strong>C is correct.</strong> Deluge is dynamically typed. You write <code>myVar = 10;</code> without any declaration keyword."},
+       opts:["A. var","B. let","C. No keyword — just assign directly","D. dim"],
+       c:"C"},
       {lbl:"Creating a list",
        q:"How do you create an empty list in Deluge?",
-       opts:["A. <code>myList = [];</code>","B. <code>myList = list();</code>","C. <code>myList = new List();</code>","D. <code>myList = {};</code>"],
-       c:"B",ex:"<strong>B is correct.</strong> An empty list is created with <code>list()</code>. Use <code>myList.add(value)</code> to append items."},
+       opts:["A. myList = [];","B. myList = list();","C. myList = new List();","D. myList = {};"],
+       c:"B"},
       {lbl:"Fetch record by ID",
        q:"Which Deluge built-in fetches a single Zoho CRM record by its ID?",
-       opts:["A. <code>zoho.crm.searchRecords()</code>","B. <code>zoho.crm.fetchRecord()</code>","C. <code>zoho.crm.getRecordById()</code>","D. <code>zoho.crm.get()</code>"],
-       c:"C",ex:"<strong>C is correct.</strong> <code>zoho.crm.getRecordById(module, id)</code> is the correct built-in task to fetch a single record by its unique ID."},
+       opts:["A. zoho.crm.searchRecords()","B. zoho.crm.fetchRecord()","C. zoho.crm.getRecordById()","D. zoho.crm.get()"],
+       c:"C"},
       {lbl:"info statement",
-       q:"What does the <code>info</code> statement do in Deluge?",
+       q:"What does the info statement do in Deluge?",
        opts:["A. Throws a runtime error","B. Sends an email notification","C. Logs a message to the execution log for debugging","D. Returns a value from a function"],
-       c:"C",ex:"<strong>C is correct.</strong> <code>info \"message\";</code> writes to the function execution log — it's the Deluge equivalent of <code>console.log()</code>."},
+       c:"C"},
       {lbl:"if-else syntax",
        q:"Which is valid Deluge syntax for an if-else statement?",
-       opts:["A. <code>if x > 5 then { } else { }</code>","B. <code>if(x > 5){ } else { }</code>","C. <code>if x > 5: pass</code>","D. <code>when(x > 5){ }</code>"],
-       c:"B",ex:"<strong>B is correct.</strong> Deluge uses C-style syntax: <code>if(condition){ } else { }</code>. No <code>then</code> keyword exists."},
+       opts:["A. if x > 5 then { } else { }","B. if(x > 5){ } else { }","C. if x > 5: pass","D. when(x > 5){ }"],
+       c:"B"},
       {lbl:"List .add() method",
-       q:"How do you append an item to a Deluge list called <code>myList</code>?",
-       opts:["A. <code>myList.push(item);</code>","B. <code>myList.append(item);</code>","C. <code>myList.add(item);</code>","D. <code>myList.insert(item);</code>"],
-       c:"C",ex:"<strong>C is correct.</strong> Deluge lists use <code>.add(value)</code> to append — similar to Java's ArrayList."}
+       q:"How do you append an item to a Deluge list called myList?",
+       opts:["A. myList.push(item);","B. myList.append(item);","C. myList.add(item);","D. myList.insert(item);"],
+       c:"C"}
     ],
     code:[
-      {lbl:"Map basics",q:"Write a Deluge snippet that creates a map with keys <code>\"name\"</code> and <code>\"city\"</code>, sets their values, and uses <code>info</code> to print the name.",
-       s:"// Create a map, set name and city, then log name\n// Write your Deluge code below:",
-       p:"// personMap = map();\n// personMap.put(\"name\", \"Ahmed\");\n// personMap.put(\"city\", \"Karachi\");\n// info personMap.get(\"name\");",
-       h:"Use <code>map()</code>, <code>.put(key,val)</code> to set, and <code>.get(key)</code> to read"},
-      {lbl:"For-each loop",q:"Loop through the list <code>{\"apple\", \"mango\", \"banana\"}</code> and log each item using <code>info</code>.",
-       s:"// List: {\"apple\",\"mango\",\"banana\"}\n// Log each item\n// Write your Deluge code below:",
-       p:"// fruits = {\"apple\",\"mango\",\"banana\"};\n// for each f in fruits\n// {\n//   info f;\n// }",
-       h:"Use <code>for each item in list { }</code> syntax to iterate"},
-      {lbl:"Fetch & log field",q:"Accept a <code>contactId</code>, fetch the contact from Zoho CRM, and log the <code>Email</code> field using <code>info</code>.",
-       s:"// Input: contactId\n// Fetch contact, log Email field\n// Write your Deluge code below:",
-       p:"// c = zoho.crm.getRecordById(\"Contacts\", contactId);\n// info c.get(\"Email\");",
-       h:"Use <code>zoho.crm.getRecordById(\"Contacts\", id)</code> then <code>.get(\"Email\")</code>"},
-      {lbl:"Pass/Fail logic",q:"Check if variable <code>score</code> is ≥ 50. Log <code>\"Pass\"</code> if yes, <code>\"Fail\"</code> otherwise.",
-       s:"// Input: score (number)\n// Log Pass or Fail\n// Write your Deluge code below:",
-       p:"// if(score >= 50){ info \"Pass\"; }\n// else{ info \"Fail\"; }",
-       h:"Use <code>if(condition){ } else { }</code> and <code>info</code> to log"},
-      {lbl:"Create CRM record",q:"Create a new Lead in Zoho CRM with <code>Last_Name = \"Khan\"</code> and <code>Company = \"TechCo\"</code>.",
-       s:"// Create a Lead with Last_Name and Company fields\n// Write your Deluge code below:",
-       p:"// d = map();\n// d.put(\"Last_Name\",\"Khan\");\n// d.put(\"Company\",\"TechCo\");\n// zoho.crm.createRecord(\"Leads\", d);",
-       h:"Use <code>zoho.crm.createRecord(\"Leads\", dataMap)</code>"},
-      {lbl:"String concat",q:"Concatenate <code>firstName</code> and <code>lastName</code> variables into a full name and return it.",
-       s:"// firstName = \"Jane\"; lastName = \"Smith\";\n// Return: \"Jane Smith\"\n// Write your Deluge code below:",
-       p:"// return firstName + \" \" + lastName;",
-       h:"Use the <code>+</code> operator — Deluge concatenates strings with it"},
-      {lbl:"Fetch Deal Stage",q:"Fetch a Deal by its ID and return its <code>Stage</code> field value.",
-       s:"// Input: dealId\n// Output: Stage string\n// Write your Deluge code below:",
-       p:"// deal = zoho.crm.getRecordById(\"Deals\", dealId);\n// return deal.get(\"Stage\");",
-       h:"Use <code>getRecordById</code> then <code>.get(\"Stage\")</code>"}
+      {lbl:"Map basics",q:"Write a Deluge snippet that creates a map with keys \"name\" and \"city\", sets their values, and uses info to print the name.",s:"// Create a map, set name and city, then log the name\n// Write your Deluge code below:",h:"Use map(), .put(key,val) to set, and .get(key) to read"},
+      {lbl:"For-each loop",q:"Loop through the list {\"apple\", \"mango\", \"banana\"} and log each item using info.",s:"// List: {\"apple\",\"mango\",\"banana\"} — log each item\n// Write your Deluge code below:",h:"Use for each item in list { } syntax to iterate"},
+      {lbl:"Fetch & log field",q:"Accept a contactId, fetch the contact from Zoho CRM, and log the Email field using info.",s:"// Input: contactId — Fetch contact, log Email\n// Write your Deluge code below:",h:"Use zoho.crm.getRecordById(\"Contacts\", id) then .get(\"Email\")"},
+      {lbl:"Pass/Fail logic",q:"Check if variable score is >= 50. Log \"Pass\" if yes, \"Fail\" otherwise.",s:"// Input: score (number) — Log Pass or Fail\n// Write your Deluge code below:",h:"Use if(condition){ } else { } and info to log"},
+      {lbl:"Create CRM record",q:"Create a new Lead in Zoho CRM with Last_Name = \"Khan\" and Company = \"TechCo\".",s:"// Create a Lead record with two fields\n// Write your Deluge code below:",h:"Use zoho.crm.createRecord(\"Leads\", dataMap)"},
+      {lbl:"String concat",q:"Concatenate firstName and lastName variables into a full name and return it.",s:"// firstName = \"Jane\"; lastName = \"Smith\"; — Return: \"Jane Smith\"\n// Write your Deluge code below:",h:"Use the + operator — Deluge concatenates strings with it"},
+      {lbl:"Fetch Deal Stage",q:"Fetch a Deal by its ID and return its Stage field value.",s:"// Input: dealId — Output: Stage string\n// Write your Deluge code below:",h:"Use getRecordById then .get(\"Stage\")"}
     ]
   },
 
   mid:{
     label:"Mid-Level",emoji:"⚡",
-    desc:"Workflows, API integration, maps & lists, multi-module CRM logic",
+    desc:"1–3 years · Workflows, API integration, maps & lists, multi-module CRM logic",
     mcq:[
-      {lbl:"getRecordById syntax",
-       q:"Which is the correct Deluge syntax to fetch a single Zoho CRM record by its ID?",
-       opts:["A. <code>zoho.crm.getRecordById(module, id)</code>","B. <code>zoho.crm.searchRecords(module, criteria)</code>","C. <code>zoho.crm.fetchRecord(module, id)</code>","D. <code>zoho.crm.get(module, id)</code>"],
-       c:"A",ex:"<strong>A is correct.</strong> <code>zoho.crm.getRecordById(module, id)</code> retrieves a single record. <code>searchRecords</code> is for criteria-based multi-record searches."},
-      {lbl:"Map .put() method",
-       q:"How do you add a key-value pair to an existing Deluge map named <code>myMap</code>?",
-       opts:["A. <code>myMap.add(\"key\", \"value\");</code>","B. <code>myMap.put(\"key\", \"value\");</code>","C. <code>myMap.insert(\"key\", \"value\");</code>","D. <code>myMap[\"key\"] = \"value\";</code>"],
-       c:"B",ex:"<strong>B is correct.</strong> Deluge maps use <code>.put(key, value)</code> — identical to Java's Map interface."},
-      {lbl:"Before-Save functions",
-       q:"Which Zoho CRM function type fires <em>before</em> a record is saved and can halt the save by returning an error?",
-       opts:["A. Workflow Rule","B. Blueprint Transition Function","C. Validation Rule / Before-Save Custom Function","D. Scheduled Function"],
-       c:"C",ex:"<strong>C is correct.</strong> Before-Save functions and Validation Rules intercept saves. Workflow Rules always fire after the save completes."},
-      {lbl:"invokeurl type param",
-       q:"In Deluge's <code>invokeurl</code>, which parameter specifies the HTTP method (GET, POST, etc.)?",
-       opts:["A. <code>method</code>","B. <code>type</code>","C. <code>requesttype</code>","D. <code>verb</code>"],
-       c:"B",ex:"<strong>B is correct.</strong> The <code>type</code> parameter inside <code>invokeurl[ ]</code> sets the HTTP verb: GET, POST, PUT, DELETE, PATCH."},
-      {lbl:"Min schedule interval",
-       q:"What is the minimum interval for a Scheduled Function in Zoho CRM?",
-       opts:["A. Every 1 minute","B. Every 10 minutes","C. Every 30 minutes","D. Every 1 hour"],
-       c:"D",ex:"<strong>D is correct.</strong> Zoho CRM Scheduled Functions run at a minimum of every 1 hour. Sub-hourly scheduling is not natively supported."},
-      {lbl:"try-catch syntax",
-       q:"Which Deluge construct handles exceptions, similar to try-catch?",
-       opts:["A. <code>try { } catch { }</code> (no variable)","B. <code>if error { } handle { }</code>","C. Deluge has no native error handling","D. <code>try { } catch(e) { }</code> with an exception variable"],
-       c:"D",ex:"<strong>D is correct.</strong> Deluge supports <code>try { } catch(e) { }</code> where <code>e</code> holds the exception object you can inspect."},
-      {lbl:"searchRecords empty result",
-       q:"What does <code>zoho.crm.searchRecords()</code> return when no records match?",
-       opts:["A. <code>null</code>","B. An empty list <code>{}</code>","C. A runtime error","D. <code>false</code>"],
-       c:"B",ex:"<strong>B is correct.</strong> When no records match, <code>searchRecords</code> returns an empty list. Always check <code>results.size() > 0</code> before accessing elements."}
+      {lbl:"getRecordById syntax",q:"Which is the correct Deluge syntax to fetch a single Zoho CRM record by its ID?",opts:["A. zoho.crm.getRecordById(module, id)","B. zoho.crm.searchRecords(module, criteria)","C. zoho.crm.fetchRecord(module, id)","D. zoho.crm.get(module, id)"],c:"A"},
+      {lbl:"Map .put() method",q:"How do you add a key-value pair to an existing Deluge map named myMap?",opts:["A. myMap.add(\"key\", \"value\");","B. myMap.put(\"key\", \"value\");","C. myMap.insert(\"key\", \"value\");","D. myMap[\"key\"] = \"value\";"],c:"B"},
+      {lbl:"Before-Save functions",q:"Which Zoho CRM function type fires before a record is saved and can halt the save by returning an error?",opts:["A. Workflow Rule","B. Blueprint Transition Function","C. Validation Rule / Before-Save Custom Function","D. Scheduled Function"],c:"C"},
+      {lbl:"invokeurl type param",q:"In Deluge's invokeurl, which parameter specifies the HTTP method (GET, POST, etc.)?",opts:["A. method","B. type","C. requesttype","D. verb"],c:"B"},
+      {lbl:"Min schedule interval",q:"What is the minimum interval for a Scheduled Function in Zoho CRM?",opts:["A. Every 1 minute","B. Every 10 minutes","C. Every 30 minutes","D. Every 1 hour"],c:"D"},
+      {lbl:"try-catch syntax",q:"Which Deluge construct handles exceptions, similar to try-catch in other languages?",opts:["A. try { } catch { } (no variable)","B. if error { } handle { }","C. Deluge has no native error handling","D. try { } catch(e) { } with an exception variable"],c:"D"},
+      {lbl:"searchRecords empty result",q:"What does zoho.crm.searchRecords() return when no records match the criteria?",opts:["A. null","B. An empty list {}","C. A runtime error","D. false"],c:"B"}
     ],
     code:[
-      {lbl:"Fetch full name",q:"Accept a <code>contactId</code>, fetch the contact from Zoho CRM, and return the full name (First Name + Last Name).",
-       s:"// Input: contactId\n// Output: full name string e.g. \"Jane Smith\"\n// Write your Deluge code below:",
-       p:"// c = zoho.crm.getRecordById(\"Contacts\", contactId);\n// return c.get(\"First_Name\") + \" \" + c.get(\"Last_Name\");",
-       h:"Use <code>getRecordById()</code> then chain <code>.get(\"First_Name\")</code> and <code>.get(\"Last_Name\")</code>"},
-      {lbl:"Sum deal amounts",q:"Given deal IDs <code>{12345, 67890, 11223}</code>, fetch each deal, sum their <code>Amount</code> fields, and return the total.",
-       s:"// Input: dealIds list\n// Output: sum of all deal amounts\n// Write your Deluge code below:",
-       p:"// total = 0;\n// for each id in dealIds\n// {\n//   d = zoho.crm.getRecordById(\"Deals\", id);\n//   total = total + d.get(\"Amount\").toLong();\n// }\n// return total;",
-       h:"Use <code>for each</code> loop and accumulate: <code>total = total + amount</code>"},
-      {lbl:"POST to webhook",q:"Send a POST request to <code>https://hooks.example.com/notify</code> with JSON body <code>{\"event\":\"deal_closed\",\"deal_id\":99999}</code>.",
-       s:"// POST to external webhook with JSON body\n// Write your Deluge code below:",
-       p:"// p = map();\n// p.put(\"event\",\"deal_closed\");\n// p.put(\"deal_id\",99999);\n// response = invokeurl\n// [\n//   url: \"https://hooks.example.com/notify\"\n//   type: POST\n//   parameters: p.toString()\n//   content-type: \"application/json\"\n// ];\n// return response;",
-       h:"Use <code>invokeurl [ url:\"...\" type:POST parameters:map.toString() ]</code>"},
-      {lbl:"Conditional stage update",q:"Read a Deal's <code>Stage</code>. If <code>\"Closed Won\"</code> set Probability to 100; if <code>\"Closed Lost\"</code> set to 0; otherwise <code>info</code> the stage.",
-       s:"// Input: dealId\n// Conditional probability update\n// Write your Deluge code below:",
-       p:"// deal = zoho.crm.getRecordById(\"Deals\",dealId);\n// stage = deal.get(\"Stage\");\n// m = map();\n// if(stage==\"Closed Won\"){ m.put(\"Probability\",100); zoho.crm.updateRecord(\"Deals\",dealId,m); }\n// else if(stage==\"Closed Lost\"){ m.put(\"Probability\",0); zoho.crm.updateRecord(\"Deals\",dealId,m); }\n// else{ info \"Stage: \"+stage; }",
-       h:"Use <code>zoho.crm.updateRecord(\"Deals\", id, map)</code> to save changes"},
-      {lbl:"Phone string cleaning",q:"Clean <code>\"  +92-300 1234567  \"</code>: trim spaces, remove hyphens, return <code>\"+923001234567\"</code>.",
-       s:"// Input: rawPhone = \"  +92-300 1234567  \"\n// Output: \"+923001234567\"\n// Write your Deluge code below:",
-       p:"// return rawPhone.trim().replaceAll(\"-\",\"\").replaceAll(\" \",\"\");",
-       h:"Chain: <code>.trim()</code> → <code>.replaceAll(\"-\",\"\")</code> → <code>.replaceAll(\" \",\"\")</code>"},
-      {lbl:"Related open tasks",q:"Fetch all Tasks linked to a <code>contactId</code> where Status ≠ <code>\"Completed\"</code>, return a list of their <code>Subject</code> values.",
-       s:"// Input: contactId\n// Output: list of open task subjects\n// Write your Deluge code below:",
-       p:"// tasks = zoho.crm.searchRecords(\"Tasks\",\"(Contact_Id:equals:\"+contactId+\")\");\n// subjects = list();\n// for each t in tasks\n// {\n//   if(t.get(\"Status\")!=\"Completed\"){ subjects.add(t.get(\"Subject\")); }\n// }\n// return subjects;",
-       h:"Use <code>zoho.crm.searchRecords()</code> with criteria, then filter in a loop"},
-      {lbl:"Lead conversion logic",q:"Workflow function: if Lead's <code>Lead_Score</code> ≥ 80, convert the lead (Deal Stage: <code>\"Needs Analysis\"</code>). If &lt; 80, send email to the owner.",
-       s:"// Input: leadId (workflow trigger)\n// Convert if score >= 80, else notify\n// Write your Deluge code below:",
-       p:"// lead = zoho.crm.getRecordById(\"Leads\",leadId);\n// score = lead.get(\"Lead_Score\").toLong();\n// if(score>=80)\n// {\n//   cp = map(); dm = map(); dm.put(\"Stage\",\"Needs Analysis\"); cp.put(\"Deals\",dm);\n//   zoho.crm.convertLead(leadId, cp);\n// }\n// else\n// {\n//   ownerEmail = lead.get(\"Owner\").get(\"email\");\n//   sendmail[ from:zoho.adminuserid to:ownerEmail subject:\"Low Score Lead\" message:\"Score: \"+score ];\n// }",
-       h:"Use <code>zoho.crm.convertLead(id, params)</code> and <code>sendmail[ ]</code>"}
+      {lbl:"Fetch full name",q:"Accept a contactId, fetch the contact from Zoho CRM, and return the full name (First Name + Last Name).",s:"// Input: contactId — Output: \"Jane Smith\"\n// Write your Deluge code below:",h:"Use getRecordById() then .get(\"First_Name\") and .get(\"Last_Name\")"},
+      {lbl:"Sum deal amounts",q:"Given deal IDs {12345, 67890, 11223}, fetch each deal, sum their Amount fields, and return the total.",s:"// Input: dealIds list — Output: total sum\n// Write your Deluge code below:",h:"Use for each loop and accumulate: total = total + amount"},
+      {lbl:"POST to webhook",q:"Send a POST request to https://hooks.example.com/notify with JSON body {\"event\":\"deal_closed\",\"deal_id\":99999}.",s:"// POST to external webhook with JSON body\n// Write your Deluge code below:",h:"Use invokeurl [ url:\"...\" type:POST parameters:map.toString() ]"},
+      {lbl:"Conditional stage update",q:"Read a Deal's Stage. If \"Closed Won\" set Probability to 100; if \"Closed Lost\" set to 0; otherwise log the stage with info.",s:"// Input: dealId — Conditional probability update\n// Write your Deluge code below:",h:"Use zoho.crm.updateRecord(\"Deals\", id, map) to save changes"},
+      {lbl:"Phone string cleaning",q:"Clean \"  +92-300 1234567  \": trim spaces, remove hyphens, return \"+923001234567\".",s:"// Input: rawPhone — Output: \"+923001234567\"\n// Write your Deluge code below:",h:"Chain: .trim() → .replaceAll(\"-\",\"\") → .replaceAll(\" \",\"\")"},
+      {lbl:"Related open tasks",q:"Fetch all Tasks linked to a contactId where Status is not \"Completed\", return a list of their Subject values.",s:"// Input: contactId — Output: list of open task subjects\n// Write your Deluge code below:",h:"Use zoho.crm.searchRecords() with criteria, then filter in a loop"},
+      {lbl:"Lead conversion logic",q:"Workflow function: if Lead's Lead_Score >= 80, convert the lead (Deal Stage: \"Needs Analysis\"). If < 80, send email to the owner.",s:"// Input: leadId — Convert if score >= 80, else notify\n// Write your Deluge code below:",h:"Use zoho.crm.convertLead(id, params) and sendmail[ ]"}
     ]
   },
 
   senior:{
     label:"Senior",emoji:"🔥",
-    desc:"Blueprints, error handling, pagination, bulk operations, advanced integrations",
+    desc:"3–5 years · Blueprints, error handling, pagination, bulk operations",
     mcq:[
-      {lbl:"OAuth named connection",
-       q:"When using <code>invokeurl</code> with OAuth in Deluge, how do you attach a named connection?",
-       opts:["A. <code>headers: {\"Authorization\": \"Bearer token\"}</code>","B. <code>connection: \"your_connection_name\"</code>","C. <code>auth: \"oauth2\"</code>","D. <code>oauth: true</code>"],
-       c:"B",ex:"<strong>B is correct.</strong> Named connections from Zoho's Connection Manager are attached with <code>connection: \"connection_name\"</code> inside the <code>invokeurl</code> block."},
-      {lbl:"Bulk update efficiency",
-       q:"What is the most efficient approach for bulk-updating 500 records in a Deluge function?",
-       opts:["A. Loop 500 times calling <code>updateRecord()</code> each time","B. Use <code>zoho.crm.bulkUpdate()</code> in batches of up to 100 records","C. Use a Scheduled Function that updates 10 at a time","D. Use <code>searchRecords()</code> then <code>updateRecord()</code> in a loop"],
-       c:"B",ex:"<strong>B is correct.</strong> <code>zoho.crm.bulkUpdate()</code> supports up to 100 records per call, drastically reducing API consumption vs. individual calls."},
-      {lbl:"Blueprint rejection",
-       q:"In a Blueprint before-function, how do you <em>reject</em> (block) the transition?",
-       opts:["A. <code>return false;</code>","B. <code>throw \"error message\";</code>","C. Return a map <code>{\"status\":\"error\", \"message\":\"reason\"}</code>","D. <code>zoho.crm.rejectTransition();</code>"],
-       c:"C",ex:"<strong>C is correct.</strong> Blueprint before-functions must return a map with <code>status: \"error\"</code> and a <code>message</code> key to block the transition."},
-      {lbl:"searchRecords max records",
-       q:"What is the maximum records returned per call by <code>zoho.crm.searchRecords()</code>?",
-       opts:["A. 50","B. 100","C. 200","D. 500"],
-       c:"C",ex:"<strong>C is correct.</strong> <code>searchRecords</code> returns up to 200 records per call. Use the <code>page</code> parameter for larger result sets."},
-      {lbl:"Webhook input data",
-       q:"When a Deluge function is triggered by a webhook, where is the incoming payload?",
-       opts:["A. <code>input.get(\"payload\")</code>","B. <code>request.body</code>","C. The named parameter defined in the function signature","D. <code>zoho.webhook.data</code>"],
-       c:"C",ex:"<strong>C is correct.</strong> Webhook-triggered functions receive data as named parameters defined in the function signature — typically a map parameter called <code>payload</code>."},
-      {lbl:"Paginating getRecords",
-       q:"Which correctly paginates through all Contacts in Zoho CRM using Deluge?",
-       opts:["A. Use <code>searchRecords()</code> with an increasing <code>offset</code>","B. Use <code>zoho.crm.getRecords()</code> with <code>page</code> and <code>per_page</code> in a while loop","C. Use sequential <code>getRecordById()</code> calls","D. Use <code>zoho.crm.getAllRecords()</code>"],
-       c:"B",ex:"<strong>B is correct.</strong> <code>zoho.crm.getRecords(module, page, perPage, sortBy, order)</code> supports pagination. Loop while result size equals <code>perPage</code>."},
-      {lbl:"Unhandled exception in workflow",
-       q:"What happens if a Workflow-triggered Custom Function throws an unhandled exception?",
-       opts:["A. The record save is rolled back","B. The workflow is skipped silently — the record saves normally","C. CRM sends an auto-alert to the admin","D. The function retries automatically 3 times"],
-       c:"B",ex:"<strong>B is correct.</strong> Unhandled exceptions in workflow functions are logged but do not block saves. Always wrap critical logic in <code>try-catch</code> for reliable error tracking."}
+      {lbl:"OAuth named connection",q:"When using invokeurl with OAuth in Deluge, how do you attach a named connection?",opts:["A. headers: {\"Authorization\": \"Bearer token\"}","B. connection: \"your_connection_name\"","C. auth: \"oauth2\"","D. oauth: true"],c:"B"},
+      {lbl:"Bulk update efficiency",q:"What is the most efficient approach for bulk-updating 500 records in a Deluge function?",opts:["A. Loop 500 times calling updateRecord() each time","B. Use zoho.crm.bulkUpdate() in batches of up to 100 records","C. Use a Scheduled Function updating 10 at a time","D. Use searchRecords() then updateRecord() in a loop"],c:"B"},
+      {lbl:"Blueprint rejection",q:"In a Blueprint before-function, how do you reject (block) the transition?",opts:["A. return false;","B. throw \"error message\";","C. Return a map {\"status\":\"error\",\"message\":\"reason\"}","D. zoho.crm.rejectTransition();"],c:"C"},
+      {lbl:"searchRecords max records",q:"What is the maximum records returned per call by zoho.crm.searchRecords()?",opts:["A. 50","B. 100","C. 200","D. 500"],c:"C"},
+      {lbl:"Webhook input data",q:"When a Deluge function is triggered by a webhook, where is the incoming payload?",opts:["A. input.get(\"payload\")","B. request.body","C. The named parameter defined in the function signature","D. zoho.webhook.data"],c:"C"},
+      {lbl:"Paginating getRecords",q:"Which correctly paginates through all Contacts in Zoho CRM using Deluge?",opts:["A. searchRecords() with increasing offset","B. zoho.crm.getRecords() with page and per_page in a while loop","C. Sequential getRecordById() calls","D. zoho.crm.getAllRecords()"],c:"B"},
+      {lbl:"Unhandled exception in workflow",q:"What happens if a Workflow-triggered Custom Function throws an unhandled exception?",opts:["A. The record save is rolled back","B. The workflow is skipped silently — record saves normally","C. CRM sends an auto-alert to admin","D. The function retries automatically 3 times"],c:"B"}
     ],
     code:[
-      {lbl:"Paginated contact fetch",q:"Write a paginated Deluge function that fetches <em>all</em> Contacts from Zoho CRM and returns a list of their email addresses.",
-       s:"// Fetch ALL contacts using pagination\n// Return: list of email strings\n// Write your Deluge code below:",
-       p:"// emails = list(); page = 1; perPage = 200; more = true;\n// while(more)\n// {\n//   contacts = zoho.crm.getRecords(\"Contacts\",page,perPage,\"Created_Time\",\"asc\");\n//   for each c in contacts{ emails.add(c.get(\"Email\")); }\n//   if(contacts.size() < perPage){ more = false; } else{ page = page + 1; }\n// }\n// return emails;",
-       h:"Use <code>zoho.crm.getRecords(module, page, perPage, sortBy, order)</code> in a while loop"},
-      {lbl:"Blueprint block transition",q:"Write a Blueprint before-function that blocks a Deal transition to <code>\"Contract Sent\"</code> if <code>Amount</code> &lt; 5000.",
-       s:"// Blueprint before-function\n// Block transition if Amount < 5000\n// Write your Deluge code below:",
-       p:"// dealId = input.get(\"id\");\n// deal = zoho.crm.getRecordById(\"Deals\",dealId);\n// if(deal.get(\"Amount\").toLong() < 5000)\n// {\n//   return {\"status\":\"error\",\"message\":\"Amount must be at least $5,000 before sending contract.\"};\n// }\n// return {\"status\":\"success\"};",
-       h:"Return <code>{\"status\":\"error\", \"message\":\"...\"}</code> — not <code>return false</code>"},
-      {lbl:"OAuth API + try-catch",q:"Call Slack's API via a named connection <code>\"slack_connection\"</code> to post a message, with full error handling using try-catch.",
-       s:"// POST to Slack using named OAuth connection\n// Handle errors with try-catch\n// Write your Deluge code below:",
-       p:"// try\n// {\n//   p = map(); p.put(\"channel\",\"#deals\"); p.put(\"text\",\"Deal closed!\");\n//   r = invokeurl[ url:\"https://slack.com/api/chat.postMessage\" type:POST parameters:p.toString() connection:\"slack_connection\" ];\n//   return r;\n// }\n// catch(e)\n// {\n//   info \"Error: \"+e.toString();\n//   return {\"status\":\"failed\",\"error\":e.toString()};\n// }",
-       h:"Use <code>connection: \"slack_connection\"</code> and wrap with <code>try { } catch(e) { }</code>"},
-      {lbl:"Bulk update old deals",q:"Bulk-update all Deals in <code>\"Prospecting\"</code> stage older than 30 days to <code>\"Needs Analysis\"</code> using batch updates.",
-       s:"// Batch update stale Prospecting deals\n// Write your Deluge code below:",
-       p:"// cutoff = zoho.currentdate.subDay(30);\n// page=1; more=true;\n// while(more)\n// {\n//   deals=zoho.crm.searchRecords(\"Deals\",\"(Stage:equals:Prospecting)\",page,100);\n//   updates=list();\n//   for each d in deals\n//   {\n//     if(d.get(\"Created_Time\").toDate()<cutoff){ r=map(); r.put(\"id\",d.get(\"id\")); r.put(\"Stage\",\"Needs Analysis\"); updates.add(r); }\n//   }\n//   if(updates.size()>0){ zoho.crm.bulkUpdate(\"Deals\",updates); }\n//   if(deals.size()<100){ more=false; } else{ page=page+1; }\n// }",
-       h:"Each map in the list needs an <code>\"id\"</code> key; use <code>zoho.crm.bulkUpdate(\"Deals\", list)</code>"},
-      {lbl:"Contact upsert by email",q:"Search for a Contact by email — if found, update <code>Lead_Source</code>; if not, create a new Contact record.",
-       s:"// Upsert Contact by email\n// Write your Deluge code below:",
-       p:"// results=zoho.crm.searchRecords(\"Contacts\",\"(Email:equals:\"+email+\")\");\n// d=map(); d.put(\"Lead_Source\",\"Web Form\");\n// if(results.size()>0){ zoho.crm.updateRecord(\"Contacts\",results.get(0).get(\"id\"),d); }\n// else{ d.put(\"Last_Name\",lastName); d.put(\"Email\",email); zoho.crm.createRecord(\"Contacts\",d); }",
-       h:"Check <code>results.size() > 0</code> to distinguish update vs. create"},
-      {lbl:"Parse nested JSON",q:"Parse the JSON string <code>'{\"data\":{\"user\":{\"id\":\"USR_001\"}}}'</code> and extract the nested user ID.",
-       s:"// jsonString = '{\"data\":{\"user\":{\"id\":\"USR_001\",\"name\":\"Ahmed\"}}}'\n// Extract user id\n// Write your Deluge code below:",
-       p:"// parsed = jsonString.toMap();\n// userId = parsed.get(\"data\").get(\"user\").get(\"id\");\n// return userId;",
-       h:"Use <code>.toMap()</code> to parse JSON, then chain <code>.get()</code> calls for nested keys"},
-      {lbl:"Overdue deals email",q:"Scheduled daily function: fetch open Deals with <code>Closing_Date</code> in the past and email a summary to the sales manager.",
-       s:"// Daily: find overdue deals, email manager\n// Write your Deluge code below:",
-       p:"// today = zoho.currentdate;\n// deals = zoho.crm.searchRecords(\"Deals\",\"(Closing_Date:before:\"+today+\")(Stage:not_equal:Closed Won)(Stage:not_equal:Closed Lost)\");\n// if(deals.size()==0){ return; }\n// body = \"Overdue Deals:\\n\";\n// for each d in deals{ body = body+\"- \"+d.get(\"Deal_Name\")+\" (\"+d.get(\"Closing_Date\")+\")\\n\"; }\n// sendmail[ from:zoho.adminuserid to:\"manager@company.com\" subject:\"Overdue Deals - \"+today message:body ];",
-       h:"Use <code>zoho.currentdate</code> for today's date; <code>sendmail[ ]</code> for the notification"}
+      {lbl:"Paginated contact fetch",q:"Write a paginated Deluge function that fetches all Contacts from Zoho CRM and returns a list of their email addresses.",s:"// Fetch ALL contacts using pagination — return list of emails\n// Write your Deluge code below:",h:"Use zoho.crm.getRecords(module, page, perPage, sortBy, order) in a while loop"},
+      {lbl:"Blueprint block transition",q:"Write a Blueprint before-function that blocks a Deal transition to \"Contract Sent\" if Amount < 5000.",s:"// Blueprint before-function — block if Amount < 5000\n// Write your Deluge code below:",h:"Return {\"status\":\"error\",\"message\":\"...\"} — not return false"},
+      {lbl:"OAuth API + try-catch",q:"Call Slack's API via named connection \"slack_connection\" to post a message, with full error handling using try-catch.",s:"// POST to Slack using named OAuth connection with error handling\n// Write your Deluge code below:",h:"Use connection: \"slack_connection\" and wrap with try { } catch(e) { }"},
+      {lbl:"Bulk update old deals",q:"Bulk-update all Deals in \"Prospecting\" stage older than 30 days to \"Needs Analysis\" using batch updates.",s:"// Batch update stale Prospecting deals\n// Write your Deluge code below:",h:"Each map in the list needs an \"id\" key; use zoho.crm.bulkUpdate(\"Deals\", list)"},
+      {lbl:"Contact upsert by email",q:"Search for a Contact by email — if found update Lead_Source; if not found create a new Contact record.",s:"// Upsert Contact by email\n// Write your Deluge code below:",h:"Check results.size() > 0 to distinguish update vs. create"},
+      {lbl:"Parse nested JSON",q:"Parse the JSON string '{\"data\":{\"user\":{\"id\":\"USR_001\"}}}' and extract the nested user ID.",s:"// jsonString = '{\"data\":{\"user\":{\"id\":\"USR_001\",\"name\":\"Ahmed\"}}}' — extract user id\n// Write your Deluge code below:",h:"Use .toMap() to parse JSON, then chain .get() calls for nested keys"},
+      {lbl:"Overdue deals email",q:"Scheduled daily function: fetch open Deals with Closing_Date in the past and email a summary to the sales manager.",s:"// Daily: find overdue deals, email manager\n// Write your Deluge code below:",h:"Use zoho.currentdate for today's date; sendmail[ ] for the notification"}
     ]
   },
 
   expert:{
     label:"Expert",emoji:"🚀",
-    desc:"Architecture, cross-org integrations, distributed patterns, Zoho ecosystem design",
+    desc:"5+ years · Architecture, cross-org integrations, distributed patterns",
     mcq:[
-      {lbl:"High-volume architecture",
-       q:"Designing a Zoho integration processing 10,000+ records daily — which approach best avoids rate limits?",
-       opts:["A. Use <code>invokeurl</code> with retry logic in every function","B. Batch with <code>bulkUpdate/bulkCreate</code>, paginate reads, distribute across Scheduled Functions","C. Use Workflow Rules for all updates instead of custom functions","D. Switch to Zoho Creator for high-volume operations"],
-       c:"B",ex:"<strong>B is correct.</strong> Batching (100 per API call), pagination, and distributing load across multiple scheduled functions (each with its own API quota) is the correct architectural approach."},
-      {lbl:"Lookup field creation",
-       q:"How do you correctly set a lookup field (e.g. Account on a Contact) when creating a record via Deluge?",
-       opts:["A. Set <code>Account_Name</code> to the account name string","B. Set <code>Account_Name</code> as a map <code>{\"id\": accountId, \"name\": accountName}</code>","C. Call <code>zoho.crm.linkRecord()</code> after creating both","D. Use <code>zoho.crm.createRelation()</code>"],
-       c:"B",ex:"<strong>B is correct.</strong> Lookup fields must be set as a map with at minimum the <code>id</code> key. Passing just the name string fails or creates a bad reference."},
-      {lbl:"Delete trigger",
-       q:"You need a Deluge function to run when a record is <em>deleted</em> in Zoho CRM. Which mechanism supports this?",
-       opts:["A. Workflow Rule with 'Record Deleted' trigger","B. Blueprint after-function","C. Custom functions cannot trigger on deletion — use Zoho Flow","D. A before-delete Validation Rule"],
-       c:"A",ex:"<strong>A is correct.</strong> Zoho CRM Workflow Rules support a 'Delete' trigger, allowing custom functions to run on deletion natively."},
-      {lbl:"Compound search criteria",
-       q:"How are multiple AND conditions combined in <code>zoho.crm.searchRecords()</code> criteria?",
-       opts:["A. Pass criteria as a list","B. Chain adjacent parenthesized blocks: <code>\"(field1:op:val)(field2:op:val)\"</code>","C. Use <code>zoho.crm.advancedSearch()</code> for compound queries","D. OR conditions are not supported"],
-       c:"B",ex:"<strong>B is correct.</strong> AND conditions are chained as adjacent parenthesized blocks. OR uses <code>or</code> between blocks. Example: <code>\"(Stage:equals:Prospecting)(Amount:greater_than:1000)\"</code>"},
-      {lbl:"Cross-org data access",
-       q:"How would a Deluge function in Zoho Org A fetch records from Org B?",
-       opts:["A. Use <code>getRecordById()</code> prefixed with Org B's domain","B. Create an OAuth connection with Org B's credentials, use <code>invokeurl</code> to call Org B's REST API","C. Use <code>zoho.crm.crossOrgSearch()</code>","D. Not possible — requires third-party middleware"],
-       c:"B",ex:"<strong>B is correct.</strong> Cross-org access requires an OAuth connection to Org B + direct REST API calls via <code>invokeurl</code>. There is no native cross-org built-in task."},
-      {lbl:"Execution time limit",
-       q:"What is the hard execution time limit for a single Deluge custom function in Zoho CRM?",
-       opts:["A. 10 seconds","B. 30 seconds","C. 60 seconds","D. 5 minutes"],
-       c:"C",ex:"<strong>C is correct.</strong> Deluge custom functions are forcibly terminated at 60 seconds. Architect long-running tasks using Scheduled Functions or chunked processing."},
-      {lbl:"Two-way sync loop prevention",
-       q:"Implementing a two-way sync between Zoho CRM and an external system — how do you prevent infinite sync loops?",
-       opts:["A. Use Zoho Flow rate limiting","B. Add a boolean guard field (e.g. <code>Sync_In_Progress</code>), check and set it before triggering sync","C. Use <code>invokeurl</code> with a <code>sync: false</code> flag","D. Sync loops are impossible in Zoho CRM"],
-       c:"B",ex:"<strong>B is correct.</strong> A guard flag field prevents circular triggers. Alternatively, track the source/timestamp of the last write in a dedicated field."}
+      {lbl:"High-volume architecture",q:"Designing a Zoho integration processing 10,000+ records daily — which approach best avoids rate limits?",opts:["A. Use invokeurl with retry logic in every function","B. Batch with bulkUpdate/bulkCreate, paginate reads, distribute across Scheduled Functions","C. Use Workflow Rules for all updates instead of custom functions","D. Switch to Zoho Creator for high-volume operations"],c:"B"},
+      {lbl:"Lookup field creation",q:"How do you correctly set a lookup field (e.g. Account on a Contact) when creating a record via Deluge?",opts:["A. Set Account_Name to the account name string","B. Set Account_Name as a map {\"id\": accountId, \"name\": accountName}","C. Call zoho.crm.linkRecord() after creating both","D. Use zoho.crm.createRelation()"],c:"B"},
+      {lbl:"Delete trigger",q:"You need a Deluge function to run when a record is deleted in Zoho CRM. Which mechanism supports this?",opts:["A. Workflow Rule with 'Record Deleted' trigger","B. Blueprint after-function","C. Custom functions cannot trigger on deletion — use Zoho Flow","D. A before-delete Validation Rule"],c:"A"},
+      {lbl:"Compound search criteria",q:"How are multiple AND conditions combined in zoho.crm.searchRecords() criteria?",opts:["A. Pass criteria as a list","B. Chain adjacent parenthesized blocks: \"(field1:op:val)(field2:op:val)\"","C. Use zoho.crm.advancedSearch() for compound queries","D. OR conditions are not supported"],c:"B"},
+      {lbl:"Cross-org data access",q:"How would a Deluge function in Zoho Org A fetch records from Org B?",opts:["A. Use getRecordById() prefixed with Org B's domain","B. Create an OAuth connection with Org B's credentials, use invokeurl to call Org B's REST API","C. Use zoho.crm.crossOrgSearch()","D. Not possible — requires third-party middleware"],c:"B"},
+      {lbl:"Execution time limit",q:"What is the hard execution time limit for a single Deluge custom function in Zoho CRM?",opts:["A. 10 seconds","B. 30 seconds","C. 60 seconds","D. 5 minutes"],c:"C"},
+      {lbl:"Two-way sync loop prevention",q:"Implementing a two-way sync between Zoho CRM and an external system — how do you prevent infinite sync loops?",opts:["A. Use Zoho Flow rate limiting","B. Add a boolean guard field (e.g. Sync_In_Progress), check and set it before triggering sync","C. Use invokeurl with a sync: false flag","D. Sync loops are impossible in Zoho CRM"],c:"B"}
     ],
     code:[
-      {lbl:"Retry mechanism",q:"Write a Deluge function that retries an external API call up to 3 times, returning the response on success or a structured error map on final failure.",
-       s:"// Retry wrapper — max 3 attempts\n// Return structured error on all failures\n// Write your Deluge code below:",
-       p:"// maxRetries=3; attempt=0; lastErr=\"\";\n// while(attempt<maxRetries)\n// {\n//   try\n//   {\n//     r=invokeurl[ url:\"https://api.example.com/data\" type:GET connection:\"my_conn\" ];\n//     return r;\n//   }\n//   catch(e){ attempt=attempt+1; lastErr=e.toString(); info \"Attempt \"+attempt+\" failed\"; }\n// }\n// return {\"status\":\"failed\",\"attempts\":maxRetries,\"error\":lastErr};",
-       h:"Use a while loop with a counter and <code>try-catch</code> inside; return structured error on exhaustion"},
-      {lbl:"Linked record creation",q:"Create a Contact correctly linked to an existing Account (by ID), with the lookup field set as a map plus 3 custom fields.",
-       s:"// Create Contact linked to accountId\n// Set lookup + 3 custom fields correctly\n// Write your Deluge code below:",
-       p:"// d=map(); d.put(\"First_Name\",firstName); d.put(\"Last_Name\",lastName); d.put(\"Email\",email);\n// acct=map(); acct.put(\"id\",accountId);\n// d.put(\"Account_Name\",acct);\n// d.put(\"Custom_Field_1\",\"val1\"); d.put(\"Custom_Field_2\",\"val2\"); d.put(\"Custom_Field_3\",\"val3\");\n// return zoho.crm.createRecord(\"Contacts\",d).get(\"id\");",
-       h:"Lookup fields need <code>{\"id\": accountId}</code> — not just the name string"},
-      {lbl:"Two-module upsert",q:"Given an email, upsert a Contact (find or create), then upsert a related Deal, linking the Deal to the Contact via its lookup field.",
-       s:"// Upsert Contact → upsert linked Deal\n// Write your Deluge code below:",
-       p:"// contacts=zoho.crm.searchRecords(\"Contacts\",\"(Email:equals:\"+email+\")\");\n// if(contacts.size()>0){ contactId=contacts.get(0).get(\"id\"); }\n// else{ cm=map(); cm.put(\"Last_Name\",lastName); cm.put(\"Email\",email); contactId=zoho.crm.createRecord(\"Contacts\",cm).get(\"id\"); }\n// deals=zoho.crm.searchRecords(\"Deals\",\"(Deal_Name:equals:\"+dealName+\")\");\n// cLookup=map(); cLookup.put(\"id\",contactId);\n// dm=map(); dm.put(\"Deal_Name\",dealName); dm.put(\"Contact_Name\",cLookup); dm.put(\"Stage\",\"Prospecting\");\n// if(deals.size()>0){ zoho.crm.updateRecord(\"Deals\",deals.get(0).get(\"id\"),dm); }\n// else{ zoho.crm.createRecord(\"Deals\",dm); }",
-       h:"Handle each module's upsert independently; set lookup fields as <code>{\"id\":...}</code> maps"},
-      {lbl:"Webhook payload validation",q:"Receive a webhook payload map, validate that <code>event</code>, <code>deal_id</code>, and <code>amount</code> exist and are non-empty, return a structured validation result.",
-       s:"// Validate required fields in webhook payload\n// Return structured {valid, errors/data} map\n// Write your Deluge code below:",
-       p:"// required={\"event\",\"deal_id\",\"amount\"};\n// errors=list();\n// for each f in required\n// {\n//   v=payload.get(f);\n//   if(v==null||v.toString().trim()==\"\"){ errors.add(\"Missing: \"+f); }\n// }\n// result=map();\n// if(errors.size()>0){ result.put(\"valid\",false); result.put(\"errors\",errors); }\n// else{ result.put(\"valid\",true); result.put(\"data\",payload); }\n// return result;",
-       h:"Iterate required fields, check for null/empty, accumulate errors list, return structured map"},
-      {lbl:"Round-robin reassignment",q:"Hourly Scheduled Function: find Leads not followed up in 48 hours and round-robin assign them across 3 owner IDs, then log a summary.",
-       s:"// Hourly: round-robin reassign stale leads\n// Write your Deluge code below:",
-       p:"// ownerPool={\"USER1\",\"USER2\",\"USER3\"};\n// cutoff=zoho.currentdate.subDay(2);\n// stale=zoho.crm.searchRecords(\"Leads\",\"(Last_Activity_Time:before:\"+cutoff+\")(Converted:equals:false)\");\n// n=0;\n// for each lead in stale\n// {\n//   om=map(); om.put(\"id\",ownerPool.get(n%3));\n//   um=map(); um.put(\"Owner\",om);\n//   zoho.crm.updateRecord(\"Leads\",lead.get(\"id\"),um);\n//   n=n+1;\n// }\n// info \"Reassigned \"+n+\" leads.\";",
-       h:"Use <code>n % 3</code> for round-robin; set <code>Owner</code> as a map <code>{\"id\":...}</code>"},
-      {lbl:"Zoho Analytics push",q:"Push closed-won Deal records (name, amount, stage) as rows to a Zoho Analytics table using a named connection.",
-       s:"// Push Closed Won deals to Zoho Analytics\n// Write your Deluge code below:",
-       p:"// deals=zoho.crm.searchRecords(\"Deals\",\"(Stage:equals:Closed Won)\");\n// rows=list();\n// for each d in deals\n// {\n//   r=map(); r.put(\"Deal Name\",d.get(\"Deal_Name\")); r.put(\"Amount\",d.get(\"Amount\")); r.put(\"Stage\",d.get(\"Stage\"));\n//   rows.add(r);\n// }\n// p=map(); p.put(\"ZOHO_ACTION\",\"IMPORT\"); p.put(\"ZOHO_IMPORT_DATA\",rows.toString()); p.put(\"ZOHO_AUTO_IDENTIFY\",\"true\");\n// response=invokeurl[ url:\"https://analyticsapi.zoho.com/api/EMAIL/Workspace/Table\" type:POST parameters:p connection:\"zoho_analytics_conn\" ];\n// return response;",
-       h:"Use <code>ZOHO_ACTION: IMPORT</code> in payload; attach auth via <code>connection:</code>"},
-      {lbl:"Distributed lock pattern",q:"Implement a distributed lock pattern using a custom CRM module to prevent two concurrent executions of the same function from conflicting.",
-       s:"// Acquire lock → run logic → release lock\n// Use a custom CRM 'Locks__c' module\n// Write your Deluge code below:",
-       p:"// lockName=\"my_fn_lock\";\n// existing=zoho.crm.searchRecords(\"Locks__c\",\"(Name:equals:\"+lockName+\")(Locked__c:equals:true)\");\n// if(existing.size()>0){ info \"Lock held, exiting.\"; return; }\n// lm=map(); lm.put(\"Name\",lockName); lm.put(\"Locked__c\",true); lm.put(\"Acquired_At__c\",zoho.currenttime);\n// lockId=zoho.crm.createRecord(\"Locks__c\",lm).get(\"id\");\n// try\n// {\n//   info \"Running protected logic...\";\n//   // your logic here\n// }\n// catch(e){ info \"Error: \"+e.toString(); }\n// zoho.crm.deleteRecord(\"Locks__c\",lockId);\n// info \"Lock released.\";",
-       h:"Create a record to acquire lock, delete it to release; check existence before proceeding"}
+      {lbl:"Retry mechanism",q:"Write a Deluge function that retries an external API call up to 3 times, returning the response on success or a structured error map on final failure.",s:"// Retry wrapper — max 3 attempts, return structured error on all failures\n// Write your Deluge code below:",h:"Use a while loop with a counter and try-catch inside; return structured error on exhaustion"},
+      {lbl:"Linked record creation",q:"Create a Contact correctly linked to an existing Account (by ID), with the lookup field set as a map plus 3 custom fields.",s:"// Create Contact linked to accountId — set lookup + 3 custom fields\n// Write your Deluge code below:",h:"Lookup fields need {\"id\": accountId} — not just the name string"},
+      {lbl:"Two-module upsert",q:"Given an email, upsert a Contact (find or create), then upsert a related Deal linked to that Contact.",s:"// Upsert Contact then upsert linked Deal\n// Write your Deluge code below:",h:"Handle each module's upsert independently; set lookup fields as {\"id\":...} maps"},
+      {lbl:"Webhook payload validation",q:"Receive a webhook payload map, validate that event, deal_id, and amount exist and are non-empty, return a structured validation result.",s:"// Validate required fields in webhook payload — return {valid, errors/data}\n// Write your Deluge code below:",h:"Iterate required fields, check for null/empty, accumulate errors list, return structured map"},
+      {lbl:"Round-robin reassignment",q:"Hourly Scheduled Function: find Leads not followed up in 48 hours and round-robin assign them across 3 owner IDs, then log a summary.",s:"// Hourly: round-robin reassign stale leads to 3 owners\n// Write your Deluge code below:",h:"Use n % 3 for round-robin; set Owner as a map {\"id\":...}"},
+      {lbl:"Zoho Analytics push",q:"Push closed-won Deal records (name, amount, stage) as rows to a Zoho Analytics table using a named connection.",s:"// Push Closed Won deals to Zoho Analytics via named connection\n// Write your Deluge code below:",h:"Use ZOHO_ACTION: IMPORT in payload; attach auth via connection:"},
+      {lbl:"Distributed lock pattern",q:"Implement a distributed lock pattern using a custom CRM module to prevent concurrent executions of the same function from conflicting.",s:"// Acquire lock → run logic → release lock using Locks__c module\n// Write your Deluge code below:",h:"Create a record to acquire lock, delete it to release; check existence before proceeding"}
     ]
   }
 };
 
 // ─── State ────────────────────────────────────────────────
-let level=null, curQ=1, answers={}, seconds=0, timerInt=null, candInfo={}, questions=[];
+let level=null,curQ=1,answers={},seconds=0,timerInt=null,candInfo={},questions=[];
 
 // ─── Level select ─────────────────────────────────────────
 function selectLvl(lvl,el){
@@ -534,18 +382,18 @@ function selectLvl(lvl,el){
 function buildQs(){
   const b=BANK[level];
   questions=[];
-  b.mcq.forEach((m,i)=>questions.push({type:'mcq',lbl:m.lbl,...m}));
-  b.code.forEach((c,i)=>questions.push({type:'code',lbl:c.lbl,...c}));
+  b.mcq.forEach(m=>questions.push({type:'mcq',...m}));
+  b.code.forEach(c=>questions.push({type:'code',...c}));
 }
 
-// ─── Render questions ─────────────────────────────────────
+// ─── Render questions — NO answer highlighting ────────────
 function renderQs(){
   const con=document.getElementById('q-container');
   con.innerHTML='';
   questions.forEach((q,idx)=>{
     const num=idx+1;
     const div=document.createElement('div');
-    div.className='qcard'; div.id='q'+num;
+    div.className='qcard';div.id='q'+num;
     div.style.display=num===1?'block':'none';
     let divider='';
     if(num===1) divider=`<div class="sec-div"><span>Section 1 — Multiple Choice Questions</span></div>`;
@@ -553,11 +401,12 @@ function renderQs(){
     if(q.type==='mcq'){
       const optsH=q.opts.map((o,i)=>{
         const k=['A','B','C','D'][i];
-        return `<div class="opt" onclick="pickMCQ(${num},'${k}',this)"><div class="dot"></div><span>${o}</span></div>`;
+        // onclick selects but never reveals correct/wrong
+        return `<div class="opt" id="opt-${num}-${k}" onclick="pickMCQ(${num},'${k}',this)"><div class="dot"></div><span>${o}</span></div>`;
       }).join('');
-      div.innerHTML=`${divider}<span class="qbadge mcq">MCQ</span><p class="qtxt">${q.q}</p><div class="opts">${optsH}</div><div class="fb" id="fb${num}"></div>`;
+      div.innerHTML=`${divider}<span class="qbadge mcq">MCQ</span><p class="qtxt">${q.q}</p><div class="opts">${optsH}</div>`;
     } else {
-      div.innerHTML=`${divider}<span class="qbadge code">Code Exercise</span><p class="qtxt">${q.q}</p><div class="code-pre">${eh(q.s)}</div><textarea class="code-ans" id="ans${num}" placeholder="${eh(q.p)}"></textarea><div class="hint"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>${q.h}</div>`;
+      div.innerHTML=`${divider}<span class="qbadge code">Code Exercise</span><p class="qtxt">${q.q}</p><div class="code-pre">${eh(q.s)}</div><textarea class="code-ans" id="ans${num}" placeholder="// Write your Deluge code here…"></textarea><div class="hint"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>${q.h}</div>`;
     }
     con.appendChild(div);
   });
@@ -569,9 +418,9 @@ function startAssessment(){
   if(!level){alert('Please select your experience level.');return;}
   const name=document.getElementById('c-name').value.trim();
   const email=document.getElementById('c-email').value.trim();
-  if(!name||!email){alert('Please enter your name and email.');return;}
+  if(!name||!email){alert('Please enter your name and email to continue.');return;}
   candInfo={name,email,role:document.getElementById('c-role').value,company:document.getElementById('c-company').value,level,levelLabel:BANK[level].label,startTime:new Date().toISOString()};
-  buildQs(); renderQs();
+  buildQs();renderQs();
   const pill=document.getElementById('lvl-pill');
   pill.style.display='inline-flex';
   pill.textContent=BANK[level].emoji+' '+BANK[level].label;
@@ -589,38 +438,37 @@ function tick(){
   el.className=seconds>780?'timer danger':seconds>600?'timer warn':'timer';
 }
 
-// ─── MCQ pick ─────────────────────────────────────────────
+// ─── MCQ pick — only blue selected state, nothing else ────
 function pickMCQ(n,opt,el){
-  if(answers[n]&&answers[n].locked)return;
-  answers[n]={val:opt,locked:false};
-  el.closest('.opts').querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));
+  // Remove selection from all options for this question
+  document.querySelectorAll('#q'+n+' .opt').forEach(o=>o.classList.remove('sel'));
+  // Highlight chosen option in blue only
   el.classList.add('sel');
+  // Store answer (not locked — candidate can change any time)
+  answers[n]={val:opt};
 }
 
-// ─── Navigate ─────────────────────────────────────────────
+// ─── Save code answer ─────────────────────────────────────
+function saveCode(n){
+  const ta=document.getElementById('ans'+n);
+  if(ta) answers[n]={val:ta.value};
+}
+
+// ─── Navigate — no locking, no feedback shown ─────────────
 function nav(dir){
   if(curQ===14&&dir===1){doSubmit();return;}
+  // Save current answer silently
   const q=questions[curQ-1];
-  if(q.type==='mcq'&&answers[curQ]&&!answers[curQ].locked) lockMCQ(curQ);
-  if(q.type==='code'){const ta=document.getElementById('ans'+curQ);if(ta)answers[curQ]={val:ta.value,locked:true};}
+  if(q.type==='code') saveCode(curQ);
+  // Restore previously selected MCQ option visually
+  if(q.type==='mcq'&&answers[curQ]&&answers[curQ].val){
+    // Already reflected in DOM, nothing to do
+  }
   document.getElementById('q'+curQ).style.display='none';
   curQ+=dir;
   document.getElementById('q'+curQ).style.display='block';
-  updNav(); window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function lockMCQ(n){
-  answers[n].locked=true;
-  const q=questions[n-1],chosen=answers[n].val,isOk=chosen===q.c;
-  const keys=['A','B','C','D'];
-  document.querySelectorAll('#q'+n+' .opt').forEach((o,i)=>{
-    o.classList.add('lk');
-    if(keys[i]===chosen){o.classList.remove('sel');o.classList.add(isOk?'ok':'bad');}
-    if(!isOk&&keys[i]===q.c){o.classList.add('ok');}
-  });
-  const fb=document.getElementById('fb'+n);
-  fb.className='fb show '+(isOk?'ok':'bad');
-  fb.innerHTML=q.ex;
+  updNav();
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
 function updNav(){
@@ -630,64 +478,122 @@ function updNav(){
   document.getElementById('nextBtn').textContent=curQ===14?'Submit Assessment →':'Next →';
 }
 
-// ─── Submit ───────────────────────────────────────────────
+// ─── Submit — scoring done here, sent in payload ──────────
 async function doSubmit(){
   clearInterval(timerInt);
+  // Save last answer
   const lastQ=questions[curQ-1];
-  if(lastQ.type==='code'){const ta=document.getElementById('ans'+curQ);if(ta)answers[curQ]={val:ta.value,locked:true};}
-  else if(lastQ.type==='mcq'&&answers[curQ]&&!answers[curQ].locked){lockMCQ(curQ);}
+  if(lastQ.type==='code') saveCode(curQ);
 
-  let mcqOk=0;
-  for(let i=1;i<=7;i++){if(answers[i]&&answers[i].val===questions[i-1].c)mcqOk++;}
-  let codeAtt=0;
-  for(let i=8;i<=14;i++){if(answers[i]&&answers[i].val&&answers[i].val.trim().length>30)codeAtt++;}
+  showScr('s-submitting');
 
-  const pct=Math.round((mcqOk/7)*100);
-  const tM=Math.floor(seconds/60),tS=seconds%60,timeStr=tM+'m '+tS+'s';
-  let rating='Needs Improvement',rColor='#A32D2D';
-  if(mcqOk>=6&&codeAtt>=6){rating='Strong Hire';rColor='#27500A';}
-  else if(mcqOk>=5&&codeAtt>=5){rating='Hire';rColor='#3B6D11';}
-  else if(mcqOk>=4&&codeAtt>=3){rating='Consider';rColor='#854F0B';}
+  const tM=Math.floor(seconds/60),tS=seconds%60;
+  const timeStr=tM+'m '+tS+'s';
 
-  showScr('s-result');
-  document.getElementById('score-ring').textContent=mcqOk+'/7';
-  document.getElementById('res-title').textContent=pct>=70?'Great performance!':'Assessment Submitted';
-  document.getElementById('res-sub').textContent='MCQ accuracy: '+pct+'% · Code exercises: '+codeAtt+'/7 completed';
-  document.getElementById('res-badge').innerHTML=`<span class="lvl-badge ${level}">${BANK[level].emoji} ${BANK[level].label} Level</span>`;
-  document.getElementById('t-mcq').textContent=mcqOk+' / 7';
-  document.getElementById('t-code').textContent=codeAtt+' / 7';
-  document.getElementById('t-time').textContent=timeStr;
-  document.getElementById('t-rating').textContent=rating;
-  document.getElementById('t-rating').style.color=rColor;
-
-  let sumH='';
-  for(let i=1;i<=14;i++){
-    const q=questions[i-1],ans=answers[i]?answers[i].val:'';
-    let st,sc;
-    if(q.type==='code'){const ok=ans&&ans.trim().length>30;st=ok?'✓ Attempted':'○ Skipped';sc=ok?'ok':'neu';}
-    else{const ok=ans===q.c;st=ok?'✓ Correct':(ans?'✗ Incorrect':'○ Not answered');sc=ok?'ok':'fail';}
-    sumH+=`<div class="srow"><span>${i}. ${q.lbl}</span><span class="sr ${sc}">${st}</span></div>`;
+  // ── Score MCQs server-side (in payload) ──────────────────
+  // Correct answers evaluated here — never exposed in DOM
+  let mcqCorrect=0, mcqTotal=7;
+  const mcqRows={};
+  for(let i=1;i<=7;i++){
+    const q=questions[i-1];
+    const chosen=answers[i]?answers[i].val:'';
+    const isCorrect=chosen===q.c;
+    if(isCorrect) mcqCorrect++;
+    mcqRows[`Q${i} — ${q.lbl}`]={
+      'Question': q.q,
+      'Candidate Answer': chosen||'(not answered)',
+      'Correct Answer': q.c,
+      'Result': isCorrect?'✅ CORRECT':'❌ INCORRECT'
+    };
   }
-  document.getElementById('sum-rows').innerHTML=sumH;
+  const mcqPct=Math.round((mcqCorrect/mcqTotal)*100);
 
-  const mcqAns={},codeAns={};
-  for(let i=1;i<=7;i++){const q=questions[i-1],v=answers[i]?answers[i].val:'unanswered';mcqAns['Q'+i+'_'+q.lbl.replace(/\W+/g,'_')]=v+(v===q.c?' (Correct)':' (Wrong — correct: '+q.c+')');}
-  for(let i=8;i<=14;i++){const q=questions[i-1];codeAns['Q'+i+'_'+q.lbl.replace(/\W+/g,'_')]=(answers[i]&&answers[i].val)||'(skipped)';}
+  // ── Score code exercises (attempt quality check) ──────────
+  let codeAttempted=0, codeTotal=7;
+  const codeRows={};
+  for(let i=8;i<=14;i++){
+    const q=questions[i-1];
+    const code=(answers[i]&&answers[i].val)||'';
+    const trimmed=code.trim();
+    // Basic quality signals: has content, uses Deluge-like patterns
+    const hasContent=trimmed.length>30;
+    const hasDelugePattern=/zoho\.|invokeurl|sendmail|for each|\.get\(|\.put\(|map\(\)|list\(\)|return /i.test(trimmed);
+    const wordCount=trimmed.split(/\s+/).filter(Boolean).length;
+    let quality='(skipped)';
+    if(hasContent&&hasDelugePattern) quality='✅ Attempted — Deluge syntax detected';
+    else if(hasContent) quality='⚠️ Attempted — verify Deluge usage';
+    else quality='❌ Skipped';
+    if(hasContent) codeAttempted++;
+    codeRows[`Q${i} — ${q.lbl}`]={
+      'Question': q.q,
+      'Code Submitted': trimmed||'(empty)',
+      'Word Count': wordCount,
+      'Quality Signal': quality
+    };
+  }
 
-  const payload={'=CANDIDATE=':'---',name:candInfo.name,email:candInfo.email,role:candInfo.role||'N/A',company:candInfo.company||'N/A',level:candInfo.levelLabel,date:new Date().toLocaleString(),'=SCORES=':'---',mcq:mcqOk+'/7 ('+pct+'%)',code:codeAtt+'/7',time:timeStr,rating,'=MCQ=':'---',...mcqAns,'=CODE=':'---',...codeAns};
+  // ── Overall rating ─────────────────────────────────────────
+  let rating='Needs Improvement';
+  if(mcqCorrect>=6&&codeAttempted>=6) rating='Strong Hire';
+  else if(mcqCorrect>=5&&codeAttempted>=5) rating='Hire';
+  else if(mcqCorrect>=4&&codeAttempted>=3) rating='Consider';
 
+  // ── Build Formspree payload ────────────────────────────────
+  const payload={};
+
+  // Section 1: candidate info
+  payload['[CANDIDATE]']='───────────────────────────────';
+  payload['Name']=candInfo.name;
+  payload['Email']=candInfo.email;
+  payload['Role Applied']=candInfo.role||'N/A';
+  payload['Company']=candInfo.company||'N/A';
+  payload['Experience Level']=candInfo.levelLabel;
+  payload['Submitted At']=new Date().toLocaleString();
+  payload['Time Taken']=timeStr;
+
+  // Section 2: scores
+  payload['[SCORES]']='───────────────────────────────';
+  payload['MCQ Score']=`${mcqCorrect} / ${mcqTotal}  (${mcqPct}%)`;
+  payload['Code Exercises Attempted']=`${codeAttempted} / ${codeTotal}`;
+  payload['Overall Rating']=rating;
+
+  // Section 3: MCQ breakdown with correct/incorrect
+  payload['[MCQ ANSWERS — WITH SCORING]']='───────────────────────────────';
+  for(const[label,row] of Object.entries(mcqRows)){
+    payload[label]=`${row['Result']}  |  Candidate: ${row['Candidate Answer']}  |  Correct: ${row['Correct Answer']}`;
+  }
+
+  // Section 4: code exercises with submitted code
+  payload['[CODE EXERCISES — SUBMITTED CODE]']='───────────────────────────────';
+  for(const[label,row] of Object.entries(codeRows)){
+    payload[label+'_quality']=row['Quality Signal']+` (${row['Word Count']} words)`;
+    payload[label+'_code']=row['Code Submitted'].substring(0,1000)+(row['Code Submitted'].length>1000?'\n...(truncated)':'');
+  }
+
+  // ── Send to Formspree ──────────────────────────────────────
   try{
-    const res=await fetch(FORMSPREE,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(payload)});
-    if(res.ok){document.getElementById('sub-status').className='sub-status sent';document.getElementById('sub-status').textContent='✅ Results submitted! The hiring team will review your assessment.';}
-    else throw new Error();
+    const res=await fetch(FORMSPREE,{
+      method:'POST',
+      headers:{'Accept':'application/json','Content-Type':'application/json'},
+      body:JSON.stringify(payload)
+    });
+    if(!res.ok) throw new Error('server');
   }catch(e){
-    document.getElementById('sub-status').className='sub-status fail';
-    document.getElementById('sub-status').innerHTML='⚠️ Auto-submit failed. Please email results to <strong>hr@yourcompany.com</strong>.';
+    // Silently fail — candidate sees same thank-you regardless
+    console.warn('Submission error:',e);
   }
+
+  // ── Show thank-you — NO scores, NO answers revealed ────────
+  document.getElementById('ty-meta').textContent=
+    `${BANK[level].emoji} ${BANK[level].label} Level  ·  ${14} questions  ·  ${timeStr}`;
+  showScr('s-thankyou');
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-function showScr(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function showScr(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
 </script>
 </body>
 </html>
